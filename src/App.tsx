@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styled from "styled-components";
+import AddItem from "./components/AddItem";
+import List from "./components/List";
 
-function App() {
+export default function App() {
+  const [items, setItems] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <AddItem setItems={setItems} />
+      <List items={items as []} />
+    </Container>
   );
 }
 
-export default App;
+const Container = styled.div`
+  & {
+    background-color: black;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: none;
+    padding: none;
+
+    box-sizing: border-box;
+  }
+`;
