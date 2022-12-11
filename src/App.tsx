@@ -3,13 +3,18 @@ import styled from "styled-components";
 import AddItem from "./components/AddItem";
 import List from "./components/List";
 
+export type Items = { name: string }[];
+
 export default function App() {
   const [items, setItems] = useState([]);
 
   return (
     <Container>
-      <AddItem setItems={setItems} />
-      <List items={items as []} />
+      <AddItem setItems={setItems as React.Dispatch<React.SetStateAction<Items>>} />
+      <List
+        items={items}
+        setItems={setItems as React.Dispatch<React.SetStateAction<Items>>}
+      />
     </Container>
   );
 }
@@ -25,5 +30,9 @@ const Container = styled.div`
     padding: none;
 
     box-sizing: border-box;
+  }
+
+  * {
+    font-size: 20px;
   }
 `;
